@@ -2,11 +2,27 @@ import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import {
+  TranslocoTestingModule,
+  TranslocoTestingOptions,
+} from '@ngneat/transloco';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent, NxWelcomeComponent, RouterTestingModule],
+      imports: [
+        AppComponent,
+        NxWelcomeComponent,
+        RouterTestingModule,
+        TranslocoTestingModule.forRoot({
+          langs: { en: {}, es: {} },
+          translocoConfig: {
+            availableLangs: ['en', 'es'],
+            defaultLang: 'en',
+          },
+          preloadLangs: true,
+        }),
+      ],
     }).compileComponents();
   });
 
